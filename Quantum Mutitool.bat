@@ -18,7 +18,7 @@ if "%latestVersion%" GTR "%currentVersion%" (
     set /p updateChoice="Would you like to download the latest version? (Y/N): "
     if /i "%updateChoice%"=="Y" (
         echo Downloading the latest version...
-        curl -O https://example.com/your_script.bat 
+        curl -O https://github.com/MichaelServices/QuantumMutitool/blob/main/Quantum%20Mutitool.bat 
         echo Update complete! Please restart the script.
         exit /b
     ) else (
