@@ -7,30 +7,10 @@ setlocal enabledelayedexpansion
 
 : success = Main
 : menu = Password Menu
-:UpdateCheck
-set "currentVersion=1.0.0"  REM Set your current script version here
-set "versionUrl=https://github.com/MichaelServices/QuantumMutitool/blob/main/Version"  REM URL to fetch the latest version
 
-for /f "delims=" %%i in ('curl -s %versionUrl%') do set "latestVersion=%%i"
-
-if "%latestVersion%" GTR "%currentVersion%" (
-    echo A new version (%latestVersion%) is available! You are currently using version %currentVersion%.
-    set /p updateChoice="Would you like to download the latest version? (Y/N): "
-    if /i "%updateChoice%"=="Y" (
-        echo Downloading the latest version...
-        curl -O https://github.com/MichaelServices/QuantumMutitool/blob/main/Quantum%20Mutitool.bat 
-        echo Update complete! Please restart the script.
-        exit /b
-    ) else (
-        echo You chose not to update. Continuing with the current version.
-    )
-) else (
-    echo You are using the latest version (%currentVersion%).
-)
-
-goto menu
 
 :menu
+goto UpdateCheck
 cls
 echo.
 echo                Made By Michael Services
@@ -254,3 +234,26 @@ for /L %%i in (1,1,%count%) do (
     echo Message sent %%i of %count%
 )
 goto success
+
+
+:UpdateCheck
+set "currentVersion=1.0.0"  REM Set your current script version here
+set "versionUrl=https://github.com/MichaelServices/QuantumMutitool/blob/main/Version"  REM URL to fetch the latest version
+
+for /f "delims=" %%i in ('curl -s %versionUrl%') do set "latestVersion=%%i"
+
+if "%latestVersion%" GTR "%currentVersion%" (
+    echo A new version (%latestVersion%) is available! You are currently using version %currentVersion%.
+    set /p updateChoice="Would you like to download the latest version? (Y/N): "
+    if /i "%updateChoice%"=="Y" (
+        echo Downloading the latest version...
+        curl -O https://github.com/MichaelServices/QuantumMutitool/blob/main/Quantum%20Mutitool.bat 
+        echo Update complete! Please restart the script.
+        exit /b
+    ) else (
+        echo You chose not to update. Continuing with the current version.
+    )
+) else (
+    echo You are using the latest version (%currentVersion%).
+)
+goto menu
